@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>River Cities Alano Club — AA Meetings & Resources</title>
+<title>River Cities Alano Club: AA Meetings & Resources</title>
 <meta name="description" content="Weekly Alcoholics Anonymous meeting schedule, literature, and recovery resources." />
 
 <!-- ============================================================
   HOW TO EDIT THIS PAGE (no coding experience needed)
-  1. Find "EDIT ME" comments below — they mark the group name,
+  1. Find "EDIT ME" comments below. They mark the group name,
      meeting schedule, address, and contact info.
   2. The meeting schedule lives in the MEETINGS array near the
      bottom of the file (search for "const MEETINGS"). Each entry
@@ -302,6 +302,76 @@
     max-width: 70ch;
     opacity: 0.85;
   }
+
+  /* ---------- Quick nav ---------- */
+  .quicknav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(241,236,224,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    padding: 10px 24px;
+  }
+  .quicknav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .quicknav a:hover { background: rgba(38,49,46,0.06); color: var(--ink); }
+
+  /* ---------- Meeting types ---------- */
+  .type-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 18px;
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  @media (max-width: 620px) { .type-row { grid-template-columns: 1fr; gap: 6px; } }
+  .type-row h3 { font-size: 0.95rem; font-family: "Public Sans", sans-serif; font-weight: 700; }
+  .type-row p { margin: 4px 0 0; color: var(--ink-soft); font-size: 0.88rem; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    background: var(--paper-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 4px 18px;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    padding: 14px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.2rem;
+    color: var(--sage-deep);
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { margin: 0 0 16px; color: var(--ink-soft); font-size: 0.9rem; }
 </style>
 </head>
 <body>
@@ -323,15 +393,24 @@
     <p class="subtitle">
       A weekly meeting schedule and a few starting points for anyone who wants
       to stop drinking and stay stopped, one day at a time. Newcomers are
-      always welcome — you don't need to speak, and you don't need to give
+      always welcome. You don't need to speak, and you don't need to give
       your last name.
     </p>
 
     <div class="top-actions">
       <a class="btn btn-solid" href="#schedule">This week's meetings</a>
+      <a class="btn btn-line" href="#faq">New here? Start with FAQ</a>
       <a class="btn btn-line" href="#resources">Literature &amp; resources</a>
     </div>
   </header>
+
+  <nav class="quicknav" aria-label="Page sections">
+    <a href="#schedule">Schedule</a>
+    <a href="#new">New here</a>
+    <a href="#types">Meeting formats</a>
+    <a href="#faq">FAQ</a>
+    <a href="#resources">Resources</a>
+  </nav>
 
   <section id="schedule">
     <div class="section-head">
@@ -341,7 +420,7 @@
     <div class="week-strip" id="weekStrip"><!-- populated by JS from MEETINGS below --></div>
     <p style="margin-top:16px; color:var(--ink-soft); font-size:0.86rem; max-width:60ch;">
       The Home Group Meeting on the 1st Saturday of the month is a business
-      meeting open only to Home Group members — it's where group decisions
+      meeting open only to Home Group members. It's where group decisions
       and service action items are made.
     </p>
   </section>
@@ -358,8 +437,8 @@
           only requirement for membership is a desire to stop drinking.
         </p>
         <p>
-          There are no dues or fees. Meetings are run entirely by members —
-          there's no professional staff, and nothing is expected of you
+          There are no dues or fees. Meetings are run entirely by members,
+          with no professional staff, and nothing is expected of you
           beyond showing up.
         </p>
       </div>
@@ -368,7 +447,7 @@
           <span class="dot"></span>
           <div>
             <strong>Open meetings</strong>
-            <span class="desc">Anyone is welcome — family, friends, or anyone curious about AA.</span>
+            <span class="desc">Anyone is welcome, including family, friends, or anyone curious about AA.</span>
           </div>
         </li>
         <li>
@@ -386,6 +465,72 @@
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section id="types">
+    <div class="section-head">
+      <p class="eyebrow">What to expect</p>
+      <h2>Meeting formats explained</h2>
+    </div>
+    <div class="type-list">
+      <div class="type-row">
+        <h3>Early Birds: 6:00 AM, daily</h3>
+        <p>A short, quiet meeting to start the day. Usually discussion-based, with members sharing briefly on a topic or reading. Open to anyone.</p>
+      </div>
+      <div class="type-row">
+        <h3>12x12: Noon, daily</h3>
+        <p>A study meeting that works through the Twelve Steps and Twelve Traditions, one at a time, over the course of each cycle. For those working the program.</p>
+      </div>
+      <div class="type-row">
+        <h3>Night Meeting: 8:00 PM, daily</h3>
+        <p>The main evening meeting. Format varies by night (discussion, speaker, or Big Book study). For those working the program.</p>
+      </div>
+      <div class="type-row">
+        <h3>Men's Group: 9:00 PM, Thursdays</h3>
+        <p>A meeting for men to discuss topics specific to their experience in recovery.</p>
+      </div>
+      <div class="type-row">
+        <h3>Home Group Meeting: Noon, 1st Saturday of the month</h3>
+        <p>A business meeting for Home Group members only. This is where the group makes decisions together and assigns service action items, not a recovery-discussion meeting.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="section-head">
+      <p class="eyebrow">Common questions</p>
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Do I have to talk?</summary>
+        <p>No. You're welcome to just listen for as many meetings as you'd like. Many people attend several times before saying anything at all.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I'm not sure I have a drinking problem. Can I still come?</summary>
+        <p>Yes. The only requirement for membership is a desire to stop drinking. You don't need to be certain, and you don't need to have "hit bottom" in any particular way. Open meetings are especially suited for this; closed meetings are for anyone who has, or thinks they might have, a drinking problem.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is what's said in a meeting actually confidential?</summary>
+        <p>Anonymity is AA's core Tradition. Who attends and what's said in the room isn't repeated outside it. Using first names only is standard practice, in person and online.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's a sponsor, and do I need one?</summary>
+        <p>A sponsor is another AA member, further along in recovery, who guides someone newer through the Steps on a one-to-one basis. It's not required to attend meetings, but most members find one helpful. You can ask about finding a sponsor at any meeting.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I relapse?</summary>
+        <p>Come back. Relapse doesn't disqualify anyone from AA, and many long-term members had setbacks along the way. Meetings remain open regardless.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does it cost anything?</summary>
+        <p>No dues or fees. Most meetings pass a basket for voluntary donations to cover rent and coffee, but contributing is never required.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I attend if I'm just worried about someone else's drinking?</summary>
+        <p>Open meetings welcome family and friends. If it's specifically a loved one's drinking you want support around, Al-Anon (a separate, related fellowship) may be an even better fit. See the resources below.</p>
+      </details>
     </div>
   </section>
 
@@ -410,13 +555,13 @@
       <a class="resource-card" href="https://www.youtube.com/aagrapevine" target="_blank" rel="noopener">
         <p class="eyebrow">Listen &amp; watch</p>
         <h3>AA Grapevine</h3>
-        <p>Official AA Grapevine channel — member stories, open meetings, and talks.</p>
+        <p>Official AA Grapevine channel with member stories, open meetings, and talks.</p>
         <span class="go">youtube.com/aagrapevine →</span>
       </a>
       <a class="resource-card" href="https://www.aa.org/meeting-guide-app" target="_blank" rel="noopener">
         <p class="eyebrow">Find a meeting anywhere</p>
         <h3>Meeting Guide app</h3>
-        <p>The official AA meeting finder for iOS and Android — over 100,000 weekly meetings.</p>
+        <p>The official AA meeting finder for iOS and Android, with over 100,000 weekly meetings.</p>
         <span class="go">aa.org/meeting-guide-app →</span>
       </a>
       <a class="resource-card" href="https://www.aa.org/find-aa" target="_blank" rel="noopener">
@@ -428,8 +573,14 @@
       <a class="resource-card" href="https://www.aa.org" target="_blank" rel="noopener">
         <p class="eyebrow">General service</p>
         <h3>aa.org</h3>
-        <p>The main site of Alcoholics Anonymous World Services — history, FAQs, and more.</p>
+        <p>The main site of Alcoholics Anonymous World Services, with history, FAQs, and more.</p>
         <span class="go">aa.org →</span>
+      </a>
+      <a class="resource-card" href="https://al-anon.org" target="_blank" rel="noopener">
+        <p class="eyebrow">For families &amp; friends</p>
+        <h3>Al-Anon Family Groups</h3>
+        <p>A separate fellowship for people affected by someone else's drinking, offering support for you whether or not they seek help.</p>
+        <span class="go">al-anon.org →</span>
       </a>
       <!--
         EDIT ME: add more cards by copying an <a class="resource-card">...</a>
@@ -446,16 +597,18 @@
         <!-- EDIT ME: contact -->
         <p>Questions or corrections: <a href="mailto:rivercitiesalanoclub@gmail.com">rivercitiesalanoclub@gmail.com</a></p>
         <p>
-          Need proof of meeting attendance? We're glad to verify it — by
+          Need proof of meeting attendance? We're glad to verify it, by
           email only. We're not able to provide verification by phone or
-          give out phone numbers for this purpose. This was a decision the group
-          made together as we value our anonymity and it applies the same way for everyone.
+          give out phone numbers for this purpose. We know that's a change
+          from what some people are used to, and that a phone number is
+          what some situations call for. This was a decision the group
+          made together, and it applies the same way for everyone.
         </p>
       </div>
       <div>
         <h3>In case you need help now</h3>
         <div class="helpline">
-          SAMHSA National Helpline (US): <strong>1-800-662-4357</strong> — free,
+          SAMHSA National Helpline (US): <strong>1-800-662-4357</strong>. Free,
           confidential, 24/7 support for substance use and mental health.
         </div>
       </div>
@@ -475,13 +628,13 @@
    EDIT ME: THE MEETING SCHEDULE
    -------------------------------------------------------------
    One object per meeting. Fields:
-     day    — "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun"
-     time   — display string, e.g. "7:00 PM"
-     name   — meeting name, e.g. "Big Book Study"
-     tags   — short labels shown as pills, e.g. ["Open","In-person"]
+     day:   "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun"
+     time:  display string, e.g. "7:00 PM"
+     name:  meeting name, e.g. "Big Book Study"
+     tags:  short labels shown as pills, e.g. ["Open","In-person"]
               common tags: Open, Closed, In-person, Virtual, Hybrid,
               Speaker, Discussion, Big Book, Beginners
-   Add, remove, or edit lines freely — the layout updates itself.
+   Add, remove, or edit lines freely. The layout updates itself.
 ============================================================= */
 const MEETINGS = [
   { day: "Mon", time: "6:00 AM",  name: "Early Birds",  tags: ["Open"] },
